@@ -39,7 +39,7 @@ export default class Index extends Vue {
   margin: 0 auto;
 
   > header {
-    height: 80px;
+    min-height: 80px;
     margin-bottom: 20px;
 
     .el-card {

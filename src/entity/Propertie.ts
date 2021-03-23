@@ -1,4 +1,4 @@
-import { ApiDocs, Definition } from '@/entity/ApiDocs'
+import { ApiDocs } from '@/entity/ApiDocs'
 import { Path } from '@/entity/Path'
 
 export class Propertie {

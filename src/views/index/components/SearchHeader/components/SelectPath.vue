@@ -6,6 +6,7 @@
     style="width: 300px"
     placeholder="选择接口"
     :props="cascaderProps"
+    popper-class="path-popper"
     @change="handlePathChange"
   />
 </template>
@@ -71,6 +72,5 @@ export default class SelectPath extends Vue {
 }
 </script>
 
-<style lang="stylus" scoped>
-
+<style lang="scss" scoped>
 </style>

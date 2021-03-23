@@ -109,6 +109,11 @@ export default class SearchHeader extends Vue {
 
   handleRefreshClick () {
     ApiDocs.getInstance().refresh()
+    this.$message.success({
+      showClose: true,
+      message: '刷新成功',
+      duration: 800
+    })
   }
 
   handleOpenSwagger () {

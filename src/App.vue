@@ -43,12 +43,18 @@ body, p {
   align-items: center;
 }
 
-.align-center{
+.align-center {
   align-items: center;
 }
 
-.justify-center{
+.justify-center {
   justify-content: center;
+}
+
+.path-popper {
+  .el-cascader-panel, .el-cascader-menu__wrap {
+    height: 500px;
+  }
 }
 
 ::-webkit-scrollbar-track-piece {
