@@ -23,6 +23,7 @@
         v-model="curCodeTypeObj.template"
         type="textarea"
         :autosize="{ minRows: 15, maxRows: 20}"
+        @change="handleTemplateCodeChange"
       />
     </div>
   </el-card>
@@ -32,6 +33,7 @@
 import { Component, Emit, Vue, Watch } from 'vue-property-decorator'
 import CodeTemplate from '@/config/CodeTemplate'
 import CodeResolve from '@/config/CodeResolve'
+import { Util } from '@/util'
 
 export interface CodeType {
   label: string,
@@ -52,11 +54,13 @@ export default class TemplateConfig extends Vue {
   private curCodeTypeObj: CodeType = this.codeTypeList[0]
 
   created () {
+    this.templateCodeInit()
     this.sendChangeEmit()
   }
 
   private handleCommandClick (codeType: CodeType) {
     this.curCodeTypeObj = codeType
+    this.templateCodeInit()
     this.sendChangeEmit()
   }
 
@@ -68,6 +72,18 @@ export default class TemplateConfig extends Vue {
   @Watch('curCodeTypeObj.template')
   private handleTemplateInputChange () {
     this.sendChangeEmit()
+  }
+
+  handleTemplateCodeChange (val: string) {
+    Util.setStorage(this.curCodeTypeObj.label, val)
+    console.log(val, '<---------->val', this.curCodeTypeObj.label)
+  }
+
+  private templateCodeInit () {
+    const storage = Util.getStorage(this.curCodeTypeObj.label)
+    if (storage) {
+      this.curCodeTypeObj.template = storage
+    }
   }
 }
 </script>
