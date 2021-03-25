@@ -5,6 +5,9 @@
         <el-select
           v-model="queryParams.serviceUrl"
           placeholder="请选择"
+          filterable
+          allow-create
+          default-first-option
           @change="handleServiceChange"
         >
           <el-option
