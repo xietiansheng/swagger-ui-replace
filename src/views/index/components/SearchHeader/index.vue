@@ -81,6 +81,8 @@ export default class SearchHeader extends Vue {
   projectList: Project[] = []
   // 接口数据
   pathOptions: Tag[] = []
+  // 当前controller层
+  private tagName = ''
 
   async mounted () {
     // 从缓存中读取数据
@@ -94,6 +96,10 @@ export default class SearchHeader extends Vue {
       this.queryParams.projectUrl = projectUrl
       await this.handleProjectChange()
     }
+    // 监听path改动，用于swagger页面跳转定位
+    ApiDocs.addPathDataChangeListener(path => {
+      this.tagName = path.tags[0]
+    })
   }
 
   async handleServiceChange () {
@@ -126,8 +132,8 @@ export default class SearchHeader extends Vue {
     }
     const project = this.projectList.filter(project => project.url === this.queryParams.projectUrl)[0]
     const link = this.queryParams.serviceUrl
-    const projectLink = project ? `/swagger-ui.html?urls.primaryName=${project.name}` : ''
-    window.open(link + projectLink)
+    const projectLink = project ? `?urls.primaryName=${project.name}#/${this.tagName}` : ''
+    window.open(`${link}/swagger-ui.html${projectLink}`)
   }
 }
 </script>
