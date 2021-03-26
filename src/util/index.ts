@@ -3,6 +3,21 @@ import { saveAs } from 'file-saver'
 
 export class Util {
   /**
+   * 解析用户输入的swagger地址
+   * @param url
+   */
+  public static parseHttpUrl (url: string): string {
+    if (!url) {
+      return ''
+    }
+    const position = url.indexOf('/swagger-ui.html')
+    if (position !== -1) {
+      return url.substring(0, position)
+    }
+    return url
+  }
+
+  /**
    * 转换名称
    * @param refName
    */

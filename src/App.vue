@@ -52,7 +52,7 @@ body, p {
 }
 
 .path-popper {
-  .el-cascader-panel, .el-cascader-menu__wrap {
+  .el-cascader-panel, .el-cascader-menu__wrap, .el-scrollbar__wrap {
     height: 500px;
   }
 }

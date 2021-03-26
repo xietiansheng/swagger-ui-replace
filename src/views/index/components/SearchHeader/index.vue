@@ -1,22 +1,14 @@
 <template>
   <el-card>
     <el-form inline label-width="60px">
-      <el-form-item label="后端环境" label-width="90px">
-        <el-select
+      <el-form-item label="swagger地址" label-width="120px" :error="swaggerInputMsg">
+        <el-input
           v-model="queryParams.serviceUrl"
-          placeholder="请选择"
-          filterable
-          allow-create
-          default-first-option
+          placeholder="请输入"
+          style="width: 240px"
           @change="handleServiceChange"
-        >
-          <el-option
-            v-for="item in serviceList"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value"
-          />
-        </el-select>
+          @keyup.enter.native="handleServiceChange"
+        />
       </el-form-item>
       <el-form-item label="项目">
         <el-select
@@ -29,7 +21,7 @@
             v-for="(item,index) in projectList"
             :key="index"
             :label="item.name"
-            :value="item.url"
+            :value="item.url || item.location"
           />
         </el-select>
       </el-form-item>
@@ -37,12 +29,12 @@
         <select-path ref="selectPathRef" :options="pathOptions" />
       </el-form-item>
       <el-form-item>
-        <!--<el-button type="primary" @click="()=>{$refs.generatorCodeFileRef.open()}" v-text="'生成代码'" />-->
         <el-button style="margin-left: 10px" type="primary" @click="handleRefreshClick">刷新</el-button>
         <el-button type="primary" @click="handleOpenSwagger">
           <i class="el-icon-position" />
           打开Swagger
         </el-button>
+        <el-button type="primary" @click="()=>{$refs.generatorCodeFileRef.open()}" v-text="'生成文件'" />
       </el-form-item>
     </el-form>
     <!-- 生成代码文件弹窗 -->
@@ -75,14 +67,14 @@ export default class SearchHeader extends Vue {
     pathId: ''
   }
 
-  // 服务器数据
-  private serviceList = serviceList
   // 项目数据
   projectList: Project[] = []
   // 接口数据
   pathOptions: Tag[] = []
   // 当前controller层
   private tagName = ''
+  // swagger输入框
+  private swaggerInputMsg = '请输入任意swagger地址，系统将自动解析'
 
   async mounted () {
     // 从缓存中读取数据
@@ -98,15 +90,22 @@ export default class SearchHeader extends Vue {
     }
     // 监听path改动，用于swagger页面跳转定位
     ApiDocs.addPathDataChangeListener(path => {
+      // @ts-ignore
       this.tagName = path.tags[0]
     })
   }
 
   async handleServiceChange () {
+    this.queryParams.serviceUrl = Util.parseHttpUrl(this.queryParams.serviceUrl)
+    // 清除上一次保存的项目
+    if (this.queryParams.projectUrl) {
+      this.queryParams.projectUrl = ''
+    }
     this.projectList = await HttpUtil.get(this.queryParams.serviceUrl + FinalValue.API_PROJECT_URL)
     Util.setStorage(FinalValue.STORAGE_SERVICE_URL, this.queryParams.serviceUrl)
     ApiDocs.getInstance().tags = []
     this.pathOptions = []
+    this.swaggerInputMsg = ''
   }
 
   async handleProjectChange () {
