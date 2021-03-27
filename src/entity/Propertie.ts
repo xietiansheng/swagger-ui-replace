@@ -1,5 +1,6 @@
 import { ApiDocs } from '@/entity/ApiDocs'
 import { Path } from '@/entity/Path'
+import { Util } from '@/util'
 
 export class Propertie {
   name = ''
@@ -19,13 +20,14 @@ export class Propertie {
     let refName = props.$ref || (props.items && props.items.$ref) || (props.schema && (props.schema.$ref || props.schema.items.$ref))
     // 如果当前这个属性是个链接，则直接查找子级类数据
     if (refName) {
-      refName = refName.replace('#/definitions/', '')
+      refName = Util.transformRefName(refName)
       const definition = ApiDocs.getInstance().definitions[refName]
       if (definition.properties && !Array.isArray(definition.properties)) {
         const properties: Propertie[] = []
         for (const propKey in definition.properties) {
           // @ts-ignore
           const propertie = definition.properties[propKey]
+          // 将所有自己数据转为参数对象，向下递归所有数据
           properties.push(new Propertie({
             ...propertie,
             name: propKey
@@ -34,7 +36,7 @@ export class Propertie {
         definition.properties = properties
       }
       this.childDefinition = new Path({ ...definition })
-      this.children = (definition.properties as Propertie[])
+      // this.children = (definition.properties as Propertie[])
     }
   }
 }

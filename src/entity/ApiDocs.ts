@@ -41,6 +41,8 @@ export class ApiDocs {
   paths: Path[] = []
   securityDefinitions: object = {}
   tags: Tag[] = []
+  // 这个只用来选择路径，防止污染源数据导致级联选择器报错
+  pathOptions:Tag[] = []
   private static _instance: ApiDocs = new ApiDocs()
 
   // eslint-disable-next-line no-useless-constructor
@@ -63,10 +65,11 @@ export class ApiDocs {
       }
     }
     data.paths = newPaths
-    // 提前组装好所有tags数据，方便用户进行搜索
     data.tags.forEach((item: any) => {
       item.children = data.paths.filter((path: Path) => path.tags.indexOf(item.name) !== -1)
     })
+    // 提前组装好所有tags数据，方便用户进行搜索
+    this.pathOptions = JSON.parse(JSON.stringify(data.tags))
     Object.assign(this, data)
   }
 

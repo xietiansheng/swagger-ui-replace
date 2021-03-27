@@ -40,7 +40,7 @@
             v-if="data.children && data.children.length"
             class="operation"
             type="text"
-            @click="handleGeneratorDialogOpen(data.childDefinition)"
+            @click="handleGeneratorDialogOpen(data.childDefinition || data)"
             v-text="'生成代码'"
           />
         </div>

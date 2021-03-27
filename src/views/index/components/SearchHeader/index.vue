@@ -111,7 +111,7 @@ export default class SearchHeader extends Vue {
   async handleProjectChange () {
     const fullUrl = this.queryParams.serviceUrl + this.queryParams.projectUrl
     await ApiDocs.getInstance().query(fullUrl)
-    this.pathOptions = ApiDocs.getInstance().tags
+    this.pathOptions = ApiDocs.getInstance().pathOptions
     Util.setStorage(FinalValue.STORAGE_PROJECT_URL, this.queryParams.projectUrl)
   }
 
@@ -126,7 +126,7 @@ export default class SearchHeader extends Vue {
 
   handleOpenSwagger () {
     if (!this.queryParams.serviceUrl) {
-      this.$message.warning('请选择后端环境！')
+      this.$message.warning('请输入swagger地址！')
       return
     }
     const project = this.projectList.filter(project => project.url === this.queryParams.projectUrl)[0]
