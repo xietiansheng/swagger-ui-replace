@@ -29,9 +29,9 @@ export class Tag {
 }
 
 /**
-* 单例设计，数据缓存，事件派发
-* @author xietiansheng
-*/
+ * 单例设计，数据缓存，事件派发
+ * @author xietiansheng
+ */
 export class ApiDocs {
   fullUrl = ''
   basePath = ''
@@ -42,7 +42,7 @@ export class ApiDocs {
   securityDefinitions: object = {}
   tags: Tag[] = []
   // 这个只用来选择路径，防止污染源数据导致级联选择器报错
-  pathOptions:Tag[] = []
+  pathOptions: Tag[] = []
   private static _instance: ApiDocs = new ApiDocs()
 
   // eslint-disable-next-line no-useless-constructor
@@ -95,5 +95,10 @@ export class ApiDocs {
     this._instance.pathIdChangeCallback.forEach(callback => {
       callback(path)
     })
+  }
+
+  static clear () {
+    this._instance = new ApiDocs()
+    return this
   }
 }

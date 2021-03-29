@@ -36,7 +36,7 @@ export class Propertie {
         definition.properties = properties
       }
       this.childDefinition = new Path({ ...definition })
-      // this.children = (definition.properties as Propertie[])
+      this.children = (definition.properties as Propertie[])
     }
   }
 }

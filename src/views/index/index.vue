@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <!--    <my-menu />-->
     <header>
       <search-header />
     </header>
@@ -15,12 +16,14 @@ import { Component, Vue } from 'vue-property-decorator'
 import SearchHeader from './components/SearchHeader/index.vue'
 import RequestCode from './components/RequestCode/index.vue'
 import ResponseCode from './components/ResponseCode/index.vue'
+import MyMenu from '@/views/index/components/MyMenu/index.vue'
 
 @Component({
   components: {
     SearchHeader,
     RequestCode,
-    ResponseCode
+    ResponseCode,
+    MyMenu
   }
 })
 

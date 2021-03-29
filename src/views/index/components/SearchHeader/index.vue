@@ -2,15 +2,18 @@
   <el-card>
     <el-form inline label-width="60px">
       <el-form-item label="swagger地址" label-width="120px" :error="swaggerInputMsg">
-        <el-input
+        <el-select
           v-model="queryParams.serviceUrl"
           placeholder="请输入"
-          style="width: 240px"
+          style="width: 280px"
+          filterable
+          allow-create
+          default-first-option
           @change="handleServiceChange"
           @keyup.enter.native="handleServiceChange"
         />
       </el-form-item>
-      <el-form-item label="项目">
+      <el-form-item label="项目" label-width="50px">
         <el-select
           v-model="queryParams.projectUrl"
           placeholder="请选择"
@@ -25,7 +28,7 @@
           />
         </el-select>
       </el-form-item>
-      <el-form-item label="接口地址" label-width="80px">
+      <el-form-item label="接口" label-width="60px">
         <select-path ref="selectPathRef" :options="pathOptions" />
       </el-form-item>
       <el-form-item>
@@ -34,7 +37,9 @@
           <i class="el-icon-position" />
           打开Swagger
         </el-button>
-        <el-button type="primary" @click="()=>{$refs.generatorCodeFileRef.open()}" v-text="'生成文件'" />
+        <el-button type="primary" icon="el-icon-setting">
+        <!--        <el-button type="primary" @click="()=>{$refs.generatorCodeFileXRef.open()}" v-text="'生成文件'" />-->
+        </el-button>
       </el-form-item>
     </el-form>
     <!-- 生成代码文件弹窗 -->
@@ -51,7 +56,6 @@ import { Project } from '@/views/index/components/SearchHeader/entity/Project'
 import GeneratorCodeFileDialog from '@/components/GeneratorCodeFileDialog/index.vue'
 import SelectPath from '@/views/index/components/SearchHeader/components/SelectPath.vue'
 import { Util } from '@/util'
-import { serviceList } from '@/config/Services'
 
 @Component({
   components: {
@@ -96,6 +100,9 @@ export default class SearchHeader extends Vue {
   }
 
   async handleServiceChange () {
+    this.projectList = []
+    this.swaggerInputMsg = ''
+    this.pathOptions = []
     this.queryParams.serviceUrl = Util.parseHttpUrl(this.queryParams.serviceUrl)
     // 清除上一次保存的项目
     if (this.queryParams.projectUrl) {
@@ -103,9 +110,6 @@ export default class SearchHeader extends Vue {
     }
     this.projectList = await HttpUtil.get(this.queryParams.serviceUrl + FinalValue.API_PROJECT_URL)
     Util.setStorage(FinalValue.STORAGE_SERVICE_URL, this.queryParams.serviceUrl)
-    ApiDocs.getInstance().tags = []
-    this.pathOptions = []
-    this.swaggerInputMsg = ''
   }
 
   async handleProjectChange () {

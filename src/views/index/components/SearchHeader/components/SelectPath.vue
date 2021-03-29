@@ -1,14 +1,17 @@
 <template>
-  <el-cascader
-    v-model="pathId"
-    :options="options"
-    filterable
-    style="width: 300px"
-    placeholder="选择接口"
-    :props="cascaderProps"
-    popper-class="path-popper"
-    @change="handlePathChange"
-  />
+  <div class="cascader-block">
+    <el-cascader
+      v-model="pathId"
+      :options="options"
+      filterable
+      style="width: 300px"
+      placeholder="选择接口"
+      :props="cascaderProps"
+      popper-class="path-popper"
+      @change="handlePathChange"
+    />
+    <div class="method" />
+  </div>
 </template>
 
 <script lang="ts">
@@ -28,6 +31,8 @@ export default class SelectPath extends Vue {
   private pathId = ''
   @Prop(Array) readonly options: Tag[] | undefined
 
+  @Prop(Boolean) readonly crossDomain: boolean | undefined
+
   handlePathChange (val: string) {
     const operationId = val[1]
     const filterPaths = ApiDocs.getInstance().paths.filter(item => item.operationId === operationId)
@@ -37,10 +42,18 @@ export default class SelectPath extends Vue {
   private handleProperties (path: Path) {
     // 处理请求参数
     if (path.parameters && path.parameters.length) {
-      this.transformParameters(path.parameters)
+      this.transformParameters(path)
     }
     this.transformProperties(path)
     ApiDocs.setCurPathId(path)
+  }
+
+  transformParameters (path: Path) {
+    if (path.parameters && path.parameters.length && !(path.parameters[0] instanceof Propertie)) {
+      path.parameters = path.parameters.map(item => {
+        return new Propertie({ ...item })
+      })
+    }
   }
 
   transformProperties (path: Path) {
@@ -54,23 +67,11 @@ export default class SelectPath extends Vue {
       }
     }
   }
-
-  transformParameters (parameters: Propertie[]) {
-    parameters.forEach(item => {
-      // @ts-ignore
-      const refName = item.schema && (item.schema.$ref || item.schema.items.$ref)
-      if (refName) {
-        const { properties } = ApiDocs.getInstance().definitions[Util.transformRefName(refName)]
-        item.children = []
-        for (const propertiesKey in properties) {
-          // @ts-ignore
-          item.children.push(new Propertie({ ...properties[propertiesKey], name: propertiesKey }))
-        }
-      }
-    })
-  }
 }
 </script>
 
 <style lang="scss" scoped>
+.cascader-block {
+  position: relative;
+}
 </style>
