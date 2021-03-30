@@ -87,12 +87,15 @@ export default class ResponseCode extends Vue {
 
 <style lang="scss" scoped>
 .code-container {
+  display: flex;
+  flex-direction: column;
 
   /deep/ .el-card__body {
     height: 100%;
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    flex: 1;
   }
 
   .result-block {

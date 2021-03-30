@@ -94,11 +94,14 @@ export default class RequestCode extends Vue {
 
 <style lang="scss" scoped>
 .code-container {
+  display: flex;
+  flex-direction: column;
 
   /deep/ .el-card__body {
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    flex: 1;
   }
 
   .result-block {
