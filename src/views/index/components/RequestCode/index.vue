@@ -1,10 +1,7 @@
 <template>
   <el-card class="code-container">
     <header slot="header" class="clearfix">
-      <span style="font-weight: bold">
-        请求参数列表
-        <el-button type="text" style="margin-left: 10px">{{ pathData.url }}</el-button>
-      </span>
+      <span style="font-weight: bold">请求参数列表</span>
       <!--代码生成弹窗-->
       <div style="float: right">
         <el-button
@@ -97,9 +94,6 @@ export default class RequestCode extends Vue {
 
 <style lang="scss" scoped>
 .code-container {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
 
   /deep/ .el-card__body {
     display: flex;

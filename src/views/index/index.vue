@@ -1,14 +1,19 @@
 <template>
-  <div class="container">
-    <!--    <my-menu />-->
-    <header>
-      <search-header />
-    </header>
-    <div class="section">
-      <request-code />
-      <response-code />
-    </div>
-  </div>
+  <el-container class="container">
+    <!--    <el-aside width="200px">-->
+    <!--      <my-menu />-->
+    <!--    </el-aside>-->
+    <el-container>
+      <el-header height="auto" style="padding-top: 15px">
+        <search-header />
+      </el-header>
+      <el-main>
+        <request-code />
+        <p style="width: 20px" />
+        <response-code />
+      </el-main>
+    </el-container>
+  </el-container>
 </template>
 
 <script lang="ts">
@@ -33,34 +38,15 @@ export default class Index extends Vue {
 
 <style lang="scss">
 .container {
-  height: calc(100vh - 60px);
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
-  max-width: 1400px;
-  min-width: 1200px;
-  margin: 0 auto;
+  height: 100vh;
+  box-sizing: border-box;
 
-  > header {
-    min-height: 80px;
-    margin-bottom: 20px;
-
-    .el-card {
-      height: 100%;
-    }
-  }
-
-  .section {
+  .el-main {
     display: flex;
-    flex: 1;
-    height: 400px;
+    box-sizing: border-box;
 
-    .el-card {
+    > div {
       flex: 1;
-
-      &:first-child {
-        margin-right: 20px;
-      }
     }
   }
 }

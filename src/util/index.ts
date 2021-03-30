@@ -6,9 +6,15 @@ export class Util {
    * 解析用户输入的swagger地址
    * @param url
    */
-  public static parseHttpUrl (url: string): string {
+  public static parseSwaggerUrl (url: string): string {
     if (!url) {
       return ''
+    }
+    if (!url.startsWith('http://') && !url.startsWith('https://')) {
+      url = 'http://' + url
+    }
+    if (url.substring(url.length - 1) === '/') {
+      url = url.substring(0, url.length - 1)
     }
     const position = url.indexOf('/swagger-ui.html')
     if (position !== -1) {

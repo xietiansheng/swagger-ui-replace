@@ -1,19 +1,39 @@
 <template>
   <div id="app">
     <index />
+    <version-dialog ref="versionRef" />
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import Index from './views/index/index.vue'
+import { Util } from '@/util'
+import FinalValue from '@/util/FinalValue'
+import { Version } from '@/data/Version'
+import VersionDialog from '@/components/VersionView/dialog.vue'
 
 @Component({
   components: {
-    Index
+    Index,
+    VersionDialog
   }
 })
 export default class App extends Vue {
+  mounted () {
+    this.initVersion()
+  }
+
+  initVersion () {
+    // 当前版本是否为最新版本
+    if (Version.getOldVersion() !== Version.getVersion()) {
+      // 弹出更新信息弹窗
+      // @ts-ignore
+      this.$refs.versionRef.open()
+      // 将最新版本信息缓存至本地
+      Util.setStorage(FinalValue.APP_VERSION, Version.getVersion())
+    }
+  }
 }
 </script>
 

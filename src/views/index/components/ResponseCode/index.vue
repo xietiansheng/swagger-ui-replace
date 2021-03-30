@@ -87,9 +87,6 @@ export default class ResponseCode extends Vue {
 
 <style lang="scss" scoped>
 .code-container {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
 
   /deep/ .el-card__body {
     height: 100%;

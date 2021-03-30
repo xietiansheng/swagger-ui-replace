@@ -1,7 +1,7 @@
 {
   "name": "swagger-replace-tools",
-  "version": "2.0.0",
-  "private": true,
+  "version": "2.1.1",
+  "private": false,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
