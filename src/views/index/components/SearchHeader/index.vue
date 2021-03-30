@@ -58,7 +58,7 @@
             type="primary"
             icon="el-icon-menu"
           >
-            更多功能
+            更多
           </el-button>
           <el-dropdown-menu slot="dropdown">
             <el-dropdown-item
