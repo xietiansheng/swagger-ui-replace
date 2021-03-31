@@ -1,8 +1,9 @@
 # Swagger前端替换工具
 
-在线地址：[http://xietiansheng.cn/swagger-replace-tools](http://xietiansheng.cn/swagger-replace-tools)
+- 在线地址：[http://xietiansheng.cn/swagger-replace-tools](http://xietiansheng.cn/swagger-replace-tools)
+- Gitee：[https://gitee.com/XieTS/swagger-replace-tools](https://gitee.com/XieTS/swagger-replace-tools)
 
-###开发背景
+### 开发背景
 
 *原生Swagger页面对于前端开发者来说并不是很友好，页面交互能力主要存在如下问题：*
 
@@ -11,7 +12,7 @@
 3. 新的页面开发，大量代码反复书写，劳心费力.
 
 
-###功能汇总
+### 功能汇总
 
 1. 接口搜索：支持当前项目下所有接口一键搜索.
 2. 参数预览：请求参数，返回参数类型注释预览.
@@ -53,8 +54,10 @@
     - $b：属性注释
     - $c：属性默认值
     - !!!for：循环语句，$a,$b,$c需要包裹在!!!for中才会生效
+    - 所有模板配置系统会自动缓存到本地
     
-####模板语法示例
+#### 模板语法示例
+
 ```javascript
 
 // 后端接口请求参数
