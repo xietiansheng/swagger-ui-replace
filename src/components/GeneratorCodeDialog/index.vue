@@ -16,9 +16,9 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import { Path } from '@/entity/Path'
 import ResultCode from '@/components/GeneratorCodeDialog/components/ResultCode.vue'
 import TemplateConfig, { CodeType } from '@/components/GeneratorCodeDialog/components/TemplateConfig.vue'
+import { Propertie } from '@/entity/Propertie'
 
 @Component({
   components: {
@@ -34,23 +34,25 @@ export default class GeneratorCodeDialog extends Vue {
   // 代码模板
   private templateText = ''
   // 代码解析函数
-  private templateResolve: Function = () => {}
+  private templateResolve: Function = () => {
+  }
+
   // 代码语言
   private language = ''
 
-  private data: Path = new Path()
+  private data: Propertie[] = []
 
   private handleTemplateChange (codeType: CodeType) {
     this.templateText = codeType.template
     this.templateResolve = codeType.resolve
     this.language = codeType.label
-    this.resultCodeText = this.templateResolve(this.data.properties || this.data.parameters, this.templateText)
+    this.resultCodeText = this.templateResolve(this.data, this.templateText)
   }
 
-  open (options: { data: Path }) {
-    this.data = options.data
+  open (options: { data: Propertie[] }) {
     this.visible = true
-    this.resultCodeText = this.templateResolve(this.data.properties || this.data.parameters, this.templateText)
+    this.data = options.data
+    this.resultCodeText = this.templateResolve(this.data, this.templateText)
   }
 }
 </script>

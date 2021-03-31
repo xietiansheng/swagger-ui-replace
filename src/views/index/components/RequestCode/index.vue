@@ -87,7 +87,7 @@ export default class RequestCode extends Vue {
 
   handleGeneratorDialogOpen (path: Path) {
     // @ts-ignore
-    this.$refs.generatorCodeDialogRef.open({ data: path })
+    this.$refs.generatorCodeDialogRef.open({ data: (path.parameters.length && path.parameters) || path.properties })
   }
 }
 </script>
