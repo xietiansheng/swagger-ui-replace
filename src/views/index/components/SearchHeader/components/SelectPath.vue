@@ -20,7 +20,6 @@ import { ApiDocs, Tag } from '@/entity/ApiDocs'
 import { Path } from '@/entity/Path'
 import { Propertie } from '@/entity/Propertie'
 import { Util } from '@/util'
-import de from 'element-ui/src/locale/lang/de'
 
 @Component
 export default class SelectPath extends Vue {
@@ -62,7 +61,6 @@ export default class SelectPath extends Vue {
     const refName = path.responses['200'] && path.responses['200'].schema && (path.responses['200'].schema.$ref || path.responses['200'].schema.items.$ref)
     if (refName) {
       const definition = ApiDocs.getInstance().definitions[Util.transformRefName(refName)]
-      debugger
       if (!Array.isArray(path.properties) || !((path.properties as Propertie[])[0] instanceof Propertie)) {
         for (const propertiesKey in definition.properties) {
           // @ts-ignore
