@@ -21,6 +21,18 @@ export class Version {
 
   public static readonly history: VersionHistory[] = [
     {
+      version: '2.1.2',
+      issue: [
+        { id: '212i1', message: '修复部分接口生成参数错误问题。' }
+      ],
+      func: [
+        { id: '212f1', message: '新增Gitee跳转（源码+文档）。' },
+        { id: '212f2', message: '新增<复制请求路径>按钮，支持一键复制请求路径。' },
+        { id: '212f3', message: '新增请求方式显示' }
+      ],
+      timestamp: '2021/04/02'
+    },
+    {
       version: '2.1.1',
       issue: [
         { id: '211i1', message: '修复部分接口无法正常生成代码问题。' },
