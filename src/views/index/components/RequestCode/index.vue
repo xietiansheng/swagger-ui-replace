@@ -1,9 +1,18 @@
 <template>
   <el-card class="code-container">
     <header slot="header" class="clearfix">
-      <span style="font-weight: bold">请求参数列表</span>
+      <span style="font-weight: bold">
+        请求参数列表
+        <span class="method" :style="`background:${colorMap[pathData.method]}`">{{ pathData.method.toUpperCase() }}</span>
+      </span>
       <!--代码生成弹窗-->
       <div style="float: right">
+        <el-button
+          type="text"
+          style="padding: 0"
+          @click="handleCopyCurPathUrl()"
+          v-text="'复制请求路径'"
+        />
         <el-button
           type="text"
           style="padding: 0"
@@ -56,6 +65,7 @@ import { Propertie } from '@/entity/Propertie'
 import GeneratorCodeDialog from '@/components/GeneratorCodeDialog/index.vue'
 import { Path } from '@/entity/Path'
 import { ApiDocs } from '@/entity/ApiDocs'
+import { Util } from '@/util'
 
 @Component({
   components: {
@@ -66,6 +76,12 @@ import { ApiDocs } from '@/entity/ApiDocs'
 export default class RequestCode extends Vue {
   private pathData: Path = new Path()
   private filterText = ''
+  private colorMap = {
+    get: '#61affe',
+    put: '#fca130',
+    delete: '#f93e3e',
+    post: '#49cc90'
+  };
 
   created () {
     ApiDocs.addPathDataChangeListener((pathData: Path) => {
@@ -89,6 +105,12 @@ export default class RequestCode extends Vue {
     // @ts-ignore
     this.$refs.generatorCodeDialogRef.open({ data: (path.parameters.length && path.parameters) || path.properties })
   }
+
+  handleCopyCurPathUrl () {
+    const url = ApiDocs.getInstance().curPath.url
+    Util.copyTextToSystem(url)
+    this.$message.success('复制成功：' + url)
+  }
 }
 </script>
 
@@ -102,6 +124,15 @@ export default class RequestCode extends Vue {
     flex-direction: column;
     overflow: hidden;
     flex: 1;
+  }
+
+  .method {
+    display: inline-block;
+    padding: 2px 5px;
+    font-size: 12px;
+    border-radius: 2px;
+    color: white;
+    margin-left: 10px;
   }
 
   .result-block {
