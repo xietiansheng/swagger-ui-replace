@@ -124,7 +124,8 @@ export default class SearchHeader extends Vue {
 
   private dropdownOptions = [
     { label: '服务器配置', value: '1', icon: 'el-icon-circle-plus-outline', ref: 'serviceConfigRef' },
-    { label: '更新日志', value: '2', icon: 'el-icon-document', ref: 'versionDialogRef' }
+    { label: '更新日志', value: '2', icon: 'el-icon-document', ref: 'versionDialogRef' },
+    { label: 'Gitee', value: '3', icon: 'el-icon-info', ref: '' }
   ]
 
   async mounted () {
@@ -180,6 +181,10 @@ export default class SearchHeader extends Vue {
   }
 
   handleCommand (value: string) {
+    if (value === '3') {
+      window.open('https://gitee.com/XieTS/swagger-replace-tools')
+      return
+    }
     const filterDropdown = this.dropdownOptions.filter(item => item.value === value)[0]
     // @ts-ignore
     this.$refs[filterDropdown.ref].open()
