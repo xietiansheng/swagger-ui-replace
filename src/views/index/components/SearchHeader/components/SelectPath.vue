@@ -33,9 +33,13 @@ export default class SelectPath extends Vue {
 
   @Prop(Boolean) readonly crossDomain: boolean | undefined
 
+  get apiDoc (): ApiDocs {
+    return this.$store.state.apiDocs
+  }
+
   handlePathChange (val: string) {
     const operationId = val[1]
-    const filterPaths = ApiDocs.getInstance().paths.filter(item => item.operationId === operationId)
+    const filterPaths = this.apiDoc.paths.filter(item => item.operationId === operationId)
     this.handleProperties(filterPaths[0])
   }
 
@@ -45,7 +49,7 @@ export default class SelectPath extends Vue {
       this.transformParameters(path)
     }
     this.transformProperties(path)
-    ApiDocs.setCurPathId(path)
+    this.$store.commit('SET_CUR_PATH', path)
   }
 
   transformParameters (path: Path) {
@@ -60,7 +64,7 @@ export default class SelectPath extends Vue {
     // @ts-ignore
     const refName = path.responses['200'] && path.responses['200'].schema && (path.responses['200'].schema.$ref || path.responses['200'].schema.items.$ref)
     if (refName) {
-      const definition = ApiDocs.getInstance().definitions[Util.transformRefName(refName)]
+      const definition = this.apiDoc.definitions[Util.transformRefName(refName)]
       if (!Array.isArray(path.properties) || !((path.properties as Propertie[])[0] instanceof Propertie)) {
         for (const propertiesKey in definition.properties) {
           // @ts-ignore

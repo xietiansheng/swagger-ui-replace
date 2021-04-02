@@ -94,6 +94,7 @@ import SelectPath from '@/views/index/components/SearchHeader/components/SelectP
 import { Util } from '@/util'
 import ServiceConfigDialog, { Service } from '@/views/index/components/SearchHeader/components/ServiceConfigDialog.vue'
 import VersionDialog from '@/components/VersionView/dialog.vue'
+import { Path } from '@/entity/Path'
 
 @Component({
   components: {
@@ -115,8 +116,6 @@ export default class SearchHeader extends Vue {
   projectList: Project[] = []
   // 接口数据
   pathOptions: Tag[] = []
-  // 当前controller层
-  private tagName = ''
   // swagger输入框
   private swaggerInputMsg = '请输入任意swagger地址，系统将自动解析'
   // 服务器地址
@@ -127,6 +126,10 @@ export default class SearchHeader extends Vue {
     { label: '更新日志', value: '2', icon: 'el-icon-document', ref: 'versionDialogRef' },
     { label: 'Gitee', value: '3', icon: 'el-icon-info', ref: '' }
   ]
+
+  get tagName (): Path {
+    return this.$store.state.curPath.tags[0]
+  }
 
   async mounted () {
     // 从缓存中读取数据
@@ -144,11 +147,6 @@ export default class SearchHeader extends Vue {
       this.queryParams.projectUrl = projectUrl
       await this.handleProjectChange()
     }
-    // 监听path改动，用于swagger页面跳转定位
-    ApiDocs.addPathDataChangeListener(path => {
-      // @ts-ignore
-      this.tagName = path.tags[0]
-    })
   }
 
   async handleServiceChange () {
@@ -166,13 +164,13 @@ export default class SearchHeader extends Vue {
 
   async handleProjectChange () {
     const fullUrl = this.queryParams.serviceUrl + this.queryParams.projectUrl
-    await ApiDocs.getInstance().query(fullUrl)
-    this.pathOptions = ApiDocs.getInstance().pathOptions
+    await this.$store.dispatch('queryApiDocs', fullUrl)
+    this.pathOptions = this.$store.state.apiDocs.pathOptions
     Util.setStorage(FinalValue.STORAGE_PROJECT_URL, this.queryParams.projectUrl)
   }
 
-  handleRefreshClick () {
-    ApiDocs.getInstance().refresh()
+  async handleRefreshClick () {
+    await this.$store.dispatch('queryApiDocs')
     this.$message.success({
       showClose: true,
       message: '刷新成功',

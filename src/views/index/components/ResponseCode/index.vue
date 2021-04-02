@@ -2,7 +2,7 @@
   <el-card class="code-container">
     <header slot="header" class="flex align-center">
       <span class="flex-1 text-bold">返回参数列表</span>
-      <el-button type="text" style="padding: 0" @click="handleGeneratorDialogOpen(pathData)">生成代码</el-button>
+      <el-button type="text" style="padding: 0" @click="handleGeneratorDialogOpen(curPath)">生成代码</el-button>
     </header>
     <div style="box-sizing: border-box;padding: 0 20px 10px 20px">
       <el-input
@@ -15,7 +15,7 @@
     <section class="result-block">
       <el-tree
         ref="treeRef"
-        :data="pathData.properties"
+        :data="curPath.properties"
         node-key="name"
         :expand-on-click-node="false"
         :filter-node-method="filterNode"
@@ -45,7 +45,6 @@
 
 <script lang="ts">
 import { Component, Vue, Watch } from 'vue-property-decorator'
-import { ApiDocs } from '@/entity/ApiDocs'
 import { Propertie } from '@/entity/Propertie'
 import GeneratorCodeDialog from '@/components/GeneratorCodeDialog/index.vue'
 import { Path } from '@/entity/Path'
@@ -57,19 +56,16 @@ import { Path } from '@/entity/Path'
 })
 
 export default class ResponseCode extends Vue {
-  private pathData: Path = new Path()
   private filterText = ''
+
+  get curPath (): Path {
+    return this.$store.state.curPath
+  }
 
   @Watch('filterText')
   private filterTextWatch (val: string) {
     // @ts-ignore
     this.$refs.treeRef.filter(val)
-  }
-
-  created () {
-    ApiDocs.addPathDataChangeListener((pathData: Path) => {
-      this.pathData = pathData
-    })
   }
 
   filterNode (value: string, data: Propertie) {
@@ -78,9 +74,9 @@ export default class ResponseCode extends Vue {
     return data.name.toUpperCase().indexOf(value.toUpperCase()) !== -1 || data.description.toUpperCase().indexOf(value.toUpperCase()) !== -1
   }
 
-  private handleGeneratorDialogOpen (pathData: Path) {
+  private handleGeneratorDialogOpen () {
     // @ts-ignore
-    this.$refs.generatorCodeDialogRef.open({ data: pathData.properties })
+    this.$refs.generatorCodeDialogRef.open({ data: this.curPath.properties })
   }
 }
 </script>

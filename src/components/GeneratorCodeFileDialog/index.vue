@@ -39,13 +39,11 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import FileCodeUtil from '@/components/GeneratorCodeFileDialog/util/FileCodeUtil'
-import { ApiDocs } from '@/entity/ApiDocs'
 import { Path } from '@/entity/Path'
 
 @Component
 export default class GeneratorCodeFileDialog extends Vue {
   private visible: boolean = false
-  private pathData: Path = new Path()
 
   private formData = {
     folderName: 'my-view',
@@ -54,15 +52,13 @@ export default class GeneratorCodeFileDialog extends Vue {
     paramsModelName: 'MyQueryParams'
   }
 
-  created () {
-    ApiDocs.addPathDataChangeListener((pathData: Path) => {
-      this.pathData = pathData
-    })
+  get curPath (): Path {
+    return this.$store.state.curPath
   }
 
   private handleGeneratorClick () {
     // 组装所有数据
-    FileCodeUtil.generator({ ...this.pathData, ...this.formData })
+    FileCodeUtil.generator({ ...this.curPath, ...this.formData })
   }
 
   open (options: {}) {

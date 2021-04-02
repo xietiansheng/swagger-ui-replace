@@ -3,7 +3,7 @@
     <header slot="header" class="clearfix">
       <span style="font-weight: bold">
         请求参数列表
-        <span class="method" :style="`background:${colorMap[pathData.method]}`">{{ pathData.method.toUpperCase() }}</span>
+        <span class="method" :style="`background:${colorMap[curPath.method]}`">{{ curPath.method.toUpperCase() }}</span>
       </span>
       <!--代码生成弹窗-->
       <div style="float: right">
@@ -16,7 +16,7 @@
         <el-button
           type="text"
           style="padding: 0"
-          @click="handleGeneratorDialogOpen(pathData)"
+          @click="handleGeneratorDialogOpen(curPath)"
           v-text="'生成代码'"
         />
       </div>
@@ -32,7 +32,7 @@
     <section class="result-block">
       <el-tree
         ref="treeRef"
-        :data="pathData.parameters"
+        :data="curPath.parameters"
         node-key="name"
         :expand-on-click-node="false"
         :filter-node-method="filterNode"
@@ -64,7 +64,6 @@ import { Component, Vue, Watch } from 'vue-property-decorator'
 import { Propertie } from '@/entity/Propertie'
 import GeneratorCodeDialog from '@/components/GeneratorCodeDialog/index.vue'
 import { Path } from '@/entity/Path'
-import { ApiDocs } from '@/entity/ApiDocs'
 import { Util } from '@/util'
 
 @Component({
@@ -74,19 +73,16 @@ import { Util } from '@/util'
 })
 
 export default class RequestCode extends Vue {
-  private pathData: Path = new Path()
   private filterText = ''
   private colorMap = {
     get: '#61affe',
     put: '#fca130',
     delete: '#f93e3e',
     post: '#49cc90'
-  };
+  }
 
-  created () {
-    ApiDocs.addPathDataChangeListener((pathData: Path) => {
-      this.pathData = pathData
-    })
+  get curPath (): Path {
+    return this.$store.state.curPath
   }
 
   @Watch('filterText')
@@ -107,7 +103,7 @@ export default class RequestCode extends Vue {
   }
 
   handleCopyCurPathUrl () {
-    const url = ApiDocs.getInstance().curPath.url
+    const url = this.curPath.url
     Util.copyTextToSystem(url)
     this.$message.success('复制成功：' + url)
   }
