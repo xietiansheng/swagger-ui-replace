@@ -27,7 +27,7 @@ export class Version {
       ],
       func: [
         { id: '213f1', message: '接口搜索支持路径大小写模糊搜索' },
-        { id: '213f2', message: '优化接口选择时请求方式的显示方式' }
+        { id: '213f2', message: '优化接口选择时请求方式的显示样式' }
       ],
       timestamp: '2021/04/06'
     },
