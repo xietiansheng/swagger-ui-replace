@@ -36,7 +36,7 @@ export default new Vuex.Store({
         for (const pathKey in path) {
           const pathElement = path[pathKey]
           pathElement.method = pathKey
-          pathElement.name = `${path[pathKey].summary} ${pathsKey} / ${pathKey.toUpperCase()}`
+          pathElement.name = `${path[pathKey].summary} ${pathsKey}`
           pathElement.url = pathsKey
           newPaths.push(new Path(pathElement))
         }

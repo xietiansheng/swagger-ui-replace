@@ -21,6 +21,17 @@ export class Version {
 
   public static readonly history: VersionHistory[] = [
     {
+      version: '2.1.3',
+      issue: [
+        { id: '213i1', message: '修复部分接口返回参数数据错误问题。' }
+      ],
+      func: [
+        { id: '213f1', message: '接口搜索支持路径大小写模糊搜索' },
+        { id: '213f2', message: '优化接口选择时请求方式的显示方式' }
+      ],
+      timestamp: '2021/04/06'
+    },
+    {
       version: '2.1.2',
       issue: [
         { id: '212i1', message: '修复部分接口生成参数错误问题。' }

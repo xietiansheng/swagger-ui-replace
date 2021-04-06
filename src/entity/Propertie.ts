@@ -22,11 +22,12 @@ export class Propertie {
 
   constructor (props?: any) {
     Object.assign(this, props)
-    let refName = props.$ref || (props.items && props.items.$ref) || (props.schema && (props.schema.$ref || props.schema.items.$ref))
+    let refName = props.$ref || (props.items && props.items.$ref) || (props.schema && (props.schema.$ref || (props.schema.items && props.schema.items.$ref)))
     // 如果当前这个属性是个链接，则直接查找子级类数据
     if (refName) {
       refName = Util.transformRefName(refName)
-      const definition = this.apiDocs.definitions[refName]
+      // 不污染原始数据
+      const definition = JSON.parse(JSON.stringify(this.apiDocs.definitions[refName]))
       if (definition.properties && !Array.isArray(definition.properties)) {
         const properties: Propertie[] = []
         for (const propKey in definition.properties) {

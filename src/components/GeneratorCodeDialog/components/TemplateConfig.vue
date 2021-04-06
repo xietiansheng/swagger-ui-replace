@@ -76,7 +76,6 @@ export default class TemplateConfig extends Vue {
 
   handleTemplateCodeChange (val: string) {
     Util.setStorage(this.curCodeTypeObj.label, val)
-    console.log(val, '<---------->val', this.curCodeTypeObj.label)
   }
 
   private templateCodeInit () {

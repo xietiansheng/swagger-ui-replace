@@ -65,6 +65,7 @@ import { Propertie } from '@/entity/Propertie'
 import GeneratorCodeDialog from '@/components/GeneratorCodeDialog/index.vue'
 import { Path } from '@/entity/Path'
 import { Util } from '@/util'
+import { Color } from '@/config/Color'
 
 @Component({
   components: {
@@ -74,12 +75,8 @@ import { Util } from '@/util'
 
 export default class RequestCode extends Vue {
   private filterText = ''
-  private colorMap = {
-    get: '#61affe',
-    put: '#fca130',
-    delete: '#f93e3e',
-    post: '#49cc90'
-  }
+
+  private colorMap = Color.METHOD_COLOR_MAP
 
   get curPath (): Path {
     return this.$store.state.curPath

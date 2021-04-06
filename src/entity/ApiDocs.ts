@@ -25,7 +25,6 @@ export class Tag {
 }
 
 /**
- * 单例设计，数据缓存，事件派发
  * @author xietiansheng
  */
 export class ApiDocs {
@@ -39,8 +38,4 @@ export class ApiDocs {
   tags: Tag[] = []
   // 这个只用来选择路径，防止污染源数据导致级联选择器报错
   pathOptions: Tag[] = []
-
-  async refresh () {
-    return this
-  }
 }
