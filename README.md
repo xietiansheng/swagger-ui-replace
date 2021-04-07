@@ -4,6 +4,25 @@
 - gitee：[https://gitee.com/XieTS/swagger-replace-tools](https://gitee.com/XieTS/swagger-replace-tools)
 - github：[https://github.com/xietiansheng/swagger-replace-tools](https://github.com/xietiansheng/swagger-replace-tools)
 
+### 效果展示
+> 数据展示
+
+![avatar](src/assets/example.png)
+
+> 接口搜索
+
+![avatar](src/assets/example4.png)
+
+> JavaScript 代码生成
+
+![avatar](src/assets/example2.png)
+
+> Vue 代码生成
+
+![avatar](src/assets/example3.png)
+
+<font color=e06c75>* 任何语言代码均可通过模板语法自由配置<font>
+
 ### 开发背景
 
 *原生Swagger页面对于前端开发者来说并不是很友好，页面交互能力主要存在如下问题：*
