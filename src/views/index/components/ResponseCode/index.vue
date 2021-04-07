@@ -74,9 +74,9 @@ export default class ResponseCode extends Vue {
     return data.name.toUpperCase().indexOf(value.toUpperCase()) !== -1 || data.description.toUpperCase().indexOf(value.toUpperCase()) !== -1
   }
 
-  private handleGeneratorDialogOpen () {
+  private handleGeneratorDialogOpen (path: Path) {
     // @ts-ignore
-    this.$refs.generatorCodeDialogRef.open({ data: this.curPath.properties })
+    this.$refs.generatorCodeDialogRef.open({ data: path.properties })
   }
 }
 </script>

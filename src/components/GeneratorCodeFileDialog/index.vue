@@ -59,6 +59,7 @@ export default class GeneratorCodeFileDialog extends Vue {
   private handleGeneratorClick () {
     // 组装所有数据
     FileCodeUtil.generator({ ...this.curPath, ...this.formData })
+    this.visible = false
   }
 
   open (options: {}) {

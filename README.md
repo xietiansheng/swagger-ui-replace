@@ -1,7 +1,8 @@
 # Swagger前端替换工具
 
-- 在线地址：[http://xietiansheng.cn/swagger-replace-tools](http://xietiansheng.cn/swagger-replace-tools)
-- Gitee：[https://gitee.com/XieTS/swagger-replace-tools](https://gitee.com/XieTS/swagger-replace-tools)
+- 工具在线使用地址：[http://xietiansheng.cn/swagger-replace-tools](http://xietiansheng.cn/swagger-replace-tools)
+- gitee：[https://gitee.com/XieTS/swagger-replace-tools](https://gitee.com/XieTS/swagger-replace-tools)
+- github：[https://github.com/xietiansheng/swagger-replace-tools](https://github.com/xietiansheng/swagger-replace-tools)
 
 ### 开发背景
 

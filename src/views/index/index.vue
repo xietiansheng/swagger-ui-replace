@@ -1,8 +1,5 @@
 <template>
   <el-container class="container">
-    <!--    <el-aside width="200px">-->
-    <!--      <my-menu />-->
-    <!--    </el-aside>-->
     <el-container>
       <el-header height="auto" style="padding-top: 15px">
         <search-header />
@@ -21,14 +18,12 @@ import { Component, Vue } from 'vue-property-decorator'
 import SearchHeader from './components/SearchHeader/index.vue'
 import RequestCode from './components/RequestCode/index.vue'
 import ResponseCode from './components/ResponseCode/index.vue'
-import MyMenu from '@/views/index/components/MyMenu/index.vue'
 
 @Component({
   components: {
     SearchHeader,
     RequestCode,
-    ResponseCode,
-    MyMenu
+    ResponseCode
   }
 })
 

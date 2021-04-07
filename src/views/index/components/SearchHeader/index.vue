@@ -85,7 +85,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import { ApiDocs, Tag } from '@/entity/ApiDocs'
+import { Tag } from '@/entity/ApiDocs'
 import FinalValue from '@/util/FinalValue'
 import HttpUtil from '@/util/HttpUtil'
 import { Project } from '@/views/index/components/SearchHeader/entity/Project'
@@ -124,7 +124,9 @@ export default class SearchHeader extends Vue {
   private dropdownOptions = [
     { label: '服务器配置', value: '1', icon: 'el-icon-circle-plus-outline', ref: 'serviceConfigRef' },
     { label: '更新日志', value: '2', icon: 'el-icon-document', ref: 'versionDialogRef' },
-    { label: 'Gitee', value: '3', icon: 'el-icon-info', ref: '' }
+    { label: '生成代码文件(体验)', value: '3', icon: 'el-icon-files', ref: 'generatorCodeFileRef' },
+    { label: 'gitee', value: '4', icon: 'el-icon-info', ref: '', link: 'https://gitee.com/XieTS/swagger-replace-tools' },
+    { label: 'github', value: '5', icon: 'el-icon-info', ref: '', link: 'https://github.com/xietiansheng/swagger-replace-tools' }
   ]
 
   get tagName (): Path {
@@ -179,8 +181,11 @@ export default class SearchHeader extends Vue {
   }
 
   handleCommand (value: string) {
-    if (value === '3') {
+    if (value === '4') {
       window.open('https://gitee.com/XieTS/swagger-replace-tools')
+      return
+    } else if (value === '5') {
+      window.open('https://github.com/xietiansheng/swagger-replace-tools')
       return
     }
     const filterDropdown = this.dropdownOptions.filter(item => item.value === value)[0]
