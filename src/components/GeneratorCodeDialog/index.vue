@@ -8,7 +8,7 @@
     >
       <div class="dialog-container">
         <template-config @change="handleTemplateChange" />
-        <result-code :data="resultCodeText" :language="language" />
+        <result-code style="margin-left: 10px" :data="resultCodeText" :language="language" />
       </div>
     </el-dialog>
   </section>

@@ -8,7 +8,7 @@ module.exports = {
     hotOnly: false,
     proxy: {
       '/swagger': {
-        target: 'https://xietiansheng.cn', // API服务器的地址(由于此处我nodejs后台用了路由，所以+了api)，正常不加
+        target: 'https://xietiansheng.cn',
         ws: true,
         changeOrigin: true
       }
