@@ -7,19 +7,19 @@
 ### 效果展示
 > 数据展示
 
-![avatar](src/assets/example.png)
+![](./src/assets/example.png)
 
 > 接口搜索
 
-![avatar](src/assets/example4.png)
+![](./src/assets/example4.png)
 
 > JavaScript 代码生成
 
-![avatar](src/assets/example2.png)
+![](./src/assets/example2.png)
 
 > Vue 代码生成
 
-![avatar](src/assets/example3.png)
+![](./src/assets/example3.png)
 
 <font color=e06c75>* 任何语言代码均可通过模板语法自由配置<font>
 
