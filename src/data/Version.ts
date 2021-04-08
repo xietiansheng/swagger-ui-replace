@@ -21,6 +21,14 @@ export class Version {
 
   public static readonly history: VersionHistory[] = [
     {
+      version: '2.1.4',
+      issue: [],
+      func: [
+        { id: '214f1', message: '接口选择框增加清空操作' }
+      ],
+      timestamp: '2021/04/08'
+    },
+    {
       version: '2.1.3',
       issue: [
         { id: '213i1', message: '修复部分接口返回参数数据错误问题。' }

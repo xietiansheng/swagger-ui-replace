@@ -9,6 +9,7 @@
       :props="cascaderProps"
       popper-class="path-popper"
       :filter-method="filterMethod"
+      clearable
       @change="handlePathChange"
     >
       <template slot-scope="{ node, data }">
@@ -52,6 +53,10 @@ export default class SelectPath extends Vue {
   }
 
   handlePathChange (val: string) {
+    if (!val.length) {
+      this.$store.commit('SET_CUR_PATH', new Path())
+      return
+    }
     const operationId = val[1]
     const filterPaths = this.apiDoc.paths.filter(item => item.operationId === operationId)
     this.handleProperties(filterPaths[0])
