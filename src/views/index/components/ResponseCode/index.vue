@@ -59,7 +59,7 @@ import { DialogComponent } from '@/abstract/Component'
 
 export default class ResponseCode extends Vue {
   @Ref('treeRef') readonly treeRef!: ElTree<any, any>
-  @Ref('codeDialogRef') readonly codeDialogRef!: DialogComponent<any, any>
+  @Ref('codeDialogRef') readonly codeDialogRef!: DialogComponent
   private filterText = ''
 
   get curPath (): Path {

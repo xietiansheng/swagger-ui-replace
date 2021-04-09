@@ -76,7 +76,7 @@ import { DialogComponent } from '@/abstract/Component'
 })
 
 export default class RequestCode extends Vue {
-  @Ref('codeDialogRef') readonly codeDialogRef!: DialogComponent<any, any>
+  @Ref('codeDialogRef') readonly codeDialogRef!: DialogComponent
   @Ref('treeRef') readonly treeRef!: ElTree<any, any>
 
   private filterText = ''
