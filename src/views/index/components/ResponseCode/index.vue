@@ -39,7 +39,7 @@
         </div>
       </el-tree>
     </section>
-    <generator-code-dialog ref="generatorCodeDialogRef" />
+    <generator-code-dialog ref="codeDialogRef" />
   </el-card>
 </template>
 
@@ -59,7 +59,7 @@ import { DialogComponent } from '@/base/BaseComponent'
 
 export default class ResponseCode extends Vue {
   @Ref('treeRef') readonly treeRef!: ElTree<any, any>
-  @Ref('codeDialogRef') readonly codeDialogRef!: DialogComponent
+  @Ref() readonly codeDialogRef!: DialogComponent
   private filterText = ''
 
   get curPath (): Path {
@@ -78,6 +78,7 @@ export default class ResponseCode extends Vue {
   }
 
   private handleGeneratorDialogOpen (path: Path) {
+    console.log(this.codeDialogRef, '<---------->this.codeDialogRef')
     this.codeDialogRef.open({ data: path.properties })
   }
 }

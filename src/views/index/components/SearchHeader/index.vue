@@ -166,6 +166,7 @@ export default class SearchHeader extends Vue {
 
   async handleProjectChange () {
     const fullUrl = this.queryParams.serviceUrl + this.queryParams.projectUrl
+    // 开启加载指令
     await this.$store.dispatch('queryApiDocs', fullUrl)
     this.pathOptions = this.$store.state.apiDocs.pathOptions
     Util.setStorage(FinalValue.STORAGE_PROJECT_URL, this.queryParams.projectUrl)

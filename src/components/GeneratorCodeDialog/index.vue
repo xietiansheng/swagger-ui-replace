@@ -48,6 +48,7 @@ export default class GeneratorCodeDialog extends DialogComponent {
   }
 
   open (options: { data: Propertie[] }) {
+    super.open()
     this.data = options.data
     this.resultCodeText = this.templateResolve(this.data, this.templateText)
   }

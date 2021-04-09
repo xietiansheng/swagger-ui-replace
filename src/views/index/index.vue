@@ -4,7 +4,12 @@
       <el-header height="auto" style="padding-top: 15px">
         <search-header />
       </el-header>
-      <el-main>
+      <el-main
+        v-loading="loading"
+        element-loading-text="拼命加载中"
+        element-loading-spinner="el-icon-loading"
+        element-loading-background="rgba(0, 0, 0, 0.6)"
+      >
         <request-code />
         <p style="width: 20px" />
         <response-code />
@@ -28,6 +33,9 @@ import ResponseCode from './components/ResponseCode/index.vue'
 })
 
 export default class Index extends Vue {
+  get loading (): boolean {
+    return this.$store.state.mainLoading
+  }
 }
 </script>
 

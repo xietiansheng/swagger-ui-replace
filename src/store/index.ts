@@ -10,10 +10,11 @@ export default new Vuex.Store({
   state: {
     apiDocs: new ApiDocs(),
     curPath: new Path(),
-    fullUrl: ''
+    fullUrl: '',
+    mainLoading: false
   },
   mutations: {
-    SET_CUR_PATH (state: any, curPath:Path) {
+    SET_CUR_PATH (state: any, curPath: Path) {
       state.curPath = curPath
     },
     SET_API_DOCS (state: any, apiDocs: ApiDocs) {
@@ -21,6 +22,9 @@ export default new Vuex.Store({
     },
     SET_FULL_URL (state: any, url: ApiDocs) {
       state.fullUrl = url
+    },
+    CHANGE_MAIN_LOADING (state: any, loading: boolean) {
+      state.mainLoading = loading
     }
   },
   actions: {
@@ -28,7 +32,13 @@ export default new Vuex.Store({
       if (url) {
         commit('SET_FULL_URL', url)
       }
+      commit('CHANGE_MAIN_LOADING', true)
       const data = await HttpUtil.get(url || this.state.fullUrl)
+      if (data.errMsg || !data.info) {
+        commit('SET_API_DOCS', new ApiDocs())
+        commit('CHANGE_MAIN_LOADING', false)
+        return
+      }
       // 处理一下path数据，方便后期做处理
       const newPaths: Path[] = []
       for (const pathsKey in data.paths) {
@@ -49,6 +59,7 @@ export default new Vuex.Store({
       data.pathOptions = JSON.parse(JSON.stringify(data.tags))
       Object.assign(this, data)
       commit('SET_API_DOCS', data)
+      commit('CHANGE_MAIN_LOADING', false)
     }
   }
 
