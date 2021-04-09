@@ -27,10 +27,13 @@ export default class App extends Vue {
   @Ref('versionRef') readonly versionRef!: DialogComponent
 
   mounted () {
-    this.initVersion()
+    this.detectVersion()
   }
 
-  initVersion () {
+  /**
+   * 版本检测
+   */
+  detectVersion () {
     // 当前版本是否为最新版本
     if (Version.getOldVersion() !== Version.getVersion()) {
       // 弹出更新信息弹窗

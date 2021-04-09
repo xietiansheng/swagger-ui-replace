@@ -17,7 +17,7 @@ import { Util } from '@/util'
 
 @Component
 export default class ResultCode extends Vue {
-  @Prop(String) readonly data: any
+  @Prop(String) readonly data!: string
   @Prop(String) readonly language: any
   private markedText = ''
 

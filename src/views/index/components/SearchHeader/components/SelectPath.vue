@@ -39,7 +39,6 @@ export default class SelectPath extends Vue {
   private pathId = ''
 
   @Prop(Array) readonly options: Tag[] | undefined
-  @Prop(Boolean) readonly crossDomain: boolean | undefined
 
   private cascaderProps = {
     label: 'name',

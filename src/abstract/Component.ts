@@ -1,6 +1,6 @@
-import App from '@/App.vue'
+import Application from '@/App.vue'
 
-export class DialogComponent extends App {
+export class DialogComponent extends Application {
   protected visible: boolean = false
 
   open (options?: object) {
