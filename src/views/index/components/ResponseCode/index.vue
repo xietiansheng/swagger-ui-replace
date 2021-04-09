@@ -44,10 +44,11 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Watch } from 'vue-property-decorator'
+import { Component, Ref, Vue, Watch } from 'vue-property-decorator'
 import { Propertie } from '@/entity/Propertie'
 import GeneratorCodeDialog from '@/components/GeneratorCodeDialog/index.vue'
 import { Path } from '@/entity/Path'
+import { ElTree } from 'element-ui/types/tree'
 
 @Component({
   components: {
@@ -56,6 +57,8 @@ import { Path } from '@/entity/Path'
 })
 
 export default class ResponseCode extends Vue {
+  @Ref('treeRef') readonly treeRef!: ElTree<any, any>
+  @Ref('codeDialogRef') readonly codeDialogRef!: { open: Function }
   private filterText = ''
 
   get curPath (): Path {
@@ -64,8 +67,7 @@ export default class ResponseCode extends Vue {
 
   @Watch('filterText')
   private filterTextWatch (val: string) {
-    // @ts-ignore
-    this.$refs.treeRef.filter(val)
+    this.treeRef.filter(val)
   }
 
   filterNode (value: string, data: Propertie) {
@@ -75,8 +77,7 @@ export default class ResponseCode extends Vue {
   }
 
   private handleGeneratorDialogOpen (path: Path) {
-    // @ts-ignore
-    this.$refs.generatorCodeDialogRef.open({ data: path.properties })
+    this.codeDialogRef.open({ data: path.properties })
   }
 }
 </script>

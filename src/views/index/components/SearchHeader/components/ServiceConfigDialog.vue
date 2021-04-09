@@ -66,7 +66,6 @@ export default class ServiceConfigDialog extends Vue {
 
   handleConfirmClick () {
     Util.setStorage(FinalValue.STORAGE_SERVICE_LIST, JSON.stringify(this.serviceList))
-    // @ts-ignore
     this.$message.success('保存成功！')
     this.visible = false
   }

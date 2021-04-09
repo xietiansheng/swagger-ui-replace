@@ -55,17 +55,18 @@
         </div>
       </el-tree>
     </section>
-    <generator-code-dialog ref="generatorCodeDialogRef" />
+    <generator-code-dialog ref="codeDialogRef" />
   </el-card>
 </template>
 
 <script lang="ts">
-import { Component, Vue, Watch } from 'vue-property-decorator'
+import { Component, Ref, Vue, Watch } from 'vue-property-decorator'
 import { Propertie } from '@/entity/Propertie'
 import GeneratorCodeDialog from '@/components/GeneratorCodeDialog/index.vue'
 import { Path } from '@/entity/Path'
 import { Util } from '@/util'
 import { Color } from '@/config/Color'
+import { ElTree } from 'element-ui/types/tree'
 
 @Component({
   components: {
@@ -74,6 +75,9 @@ import { Color } from '@/config/Color'
 })
 
 export default class RequestCode extends Vue {
+  @Ref('codeDialogRef') readonly codeDialogRef!: { open: Function }
+  @Ref('treeRef') readonly treeRef!: ElTree<any, any>
+
   private filterText = ''
 
   private colorMap = Color.METHOD_COLOR_MAP
@@ -84,8 +88,7 @@ export default class RequestCode extends Vue {
 
   @Watch('filterText')
   private filterTextWatch (val: string) {
-    // @ts-ignore
-    this.$refs.treeRef.filter(val)
+    this.treeRef.filter(val)
   }
 
   filterNode (value: string, data: Propertie) {
@@ -95,8 +98,7 @@ export default class RequestCode extends Vue {
   }
 
   handleGeneratorDialogOpen (path: Path) {
-    // @ts-ignore
-    this.$refs.generatorCodeDialogRef.open({ data: (path.parameters.length && path.parameters) || path.properties })
+    this.codeDialogRef.open({ data: (path.parameters.length && path.parameters) || path.properties })
   }
 
   handleCopyCurPathUrl () {
