@@ -1,8 +1,10 @@
 # Swagger前端替换工具
 
-- 工具在线使用地址：[http://xietiansheng.cn/swagger-replace-tools](http://xietiansheng.cn/swagger-replace-tools)
+- 工具在线使用地址：[http://xietiansheng.cn/swager-replace-tools](http://xietiansheng.cn/swagger-replace-tools)
 - gitee：[https://gitee.com/XieTS/swagger-replace-tools](https://gitee.com/XieTS/swagger-replace-tools)
 - github：[https://github.com/xietiansheng/swagger-replace-tools](https://github.com/xietiansheng/swagger-replace-tools)
+
+（访问公司内部局域网Swagger时，请检查Network中请求是否跨域，若请求跨域请<拉取代码在本地配置跨域解决>或<让后端开发人员配置允许跨域>）
 
 ### 效果展示
 > 数据展示
