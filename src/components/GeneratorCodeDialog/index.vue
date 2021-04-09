@@ -19,7 +19,7 @@ import { Component } from 'vue-property-decorator'
 import ResultCode from '@/components/GeneratorCodeDialog/components/ResultCode.vue'
 import TemplateConfig, { CodeType } from '@/components/GeneratorCodeDialog/components/TemplateConfig.vue'
 import { Propertie } from '@/entity/Propertie'
-import { DialogComponent } from '@/abstract/Component'
+import { DialogComponent } from '@/base/BaseComponent'
 
 @Component({
   components: {

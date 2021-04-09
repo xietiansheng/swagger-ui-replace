@@ -38,7 +38,7 @@
 import { Component } from 'vue-property-decorator'
 import { Util } from '@/util'
 import FinalValue from '@/util/FinalValue'
-import { DialogComponent } from '@/abstract/Component'
+import { DialogComponent } from '@/base/BaseComponent'
 
 @Component
 export default class ServiceConfigDialog extends DialogComponent {

@@ -67,7 +67,7 @@ import { Path } from '@/entity/Path'
 import { Util } from '@/util'
 import { Color } from '@/config/Color'
 import { ElTree } from 'element-ui/types/tree'
-import { DialogComponent } from '@/abstract/Component'
+import { DialogComponent } from '@/base/BaseComponent'
 
 @Component({
   components: {

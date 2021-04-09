@@ -49,7 +49,7 @@ import { Propertie } from '@/entity/Propertie'
 import GeneratorCodeDialog from '@/components/GeneratorCodeDialog/index.vue'
 import { Path } from '@/entity/Path'
 import { ElTree } from 'element-ui/types/tree'
-import { DialogComponent } from '@/abstract/Component'
+import { DialogComponent } from '@/base/BaseComponent'
 
 @Component({
   components: {

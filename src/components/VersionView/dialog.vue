@@ -10,7 +10,7 @@
 <script lang="ts">
 import { Component } from 'vue-property-decorator'
 import VersionView from '@/components/VersionView/index.vue'
-import { DialogComponent } from '@/abstract/Component'
+import { DialogComponent } from '@/base/BaseComponent'
 
 @Component({
   components: {

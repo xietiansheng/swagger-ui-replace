@@ -13,7 +13,7 @@ import FinalValue from '@/util/FinalValue'
 import { Version } from '@/data/Version'
 import VersionDialog from '@/components/VersionView/dialog.vue'
 import { ElMessage } from 'element-ui/types/message'
-import { DialogComponent } from '@/abstract/Component'
+import { DialogComponent } from '@/base/BaseComponent'
 
 @Component({
   components: {
