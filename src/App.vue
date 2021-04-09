@@ -24,7 +24,7 @@ import { DialogComponent } from '@/abstract/Component'
 export default class App extends Vue {
   $message!: ElMessage
 
-  @Ref('versionRef') readonly versionRef!: DialogComponent<any, any>
+  @Ref('versionRef') readonly versionRef!: DialogComponent
 
   mounted () {
     this.initVersion()

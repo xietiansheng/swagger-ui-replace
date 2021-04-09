@@ -8,20 +8,16 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
+import { Component } from 'vue-property-decorator'
 import VersionView from '@/components/VersionView/index.vue'
+import { DialogComponent } from '@/abstract/Component'
 
 @Component({
   components: {
     VersionView
   }
 })
-export default class VersionDialog extends Vue {
-  private visible = false
-
-  open () {
-    this.visible = true
-  }
+export default class VersionDialog extends DialogComponent {
 }
 </script>
 
