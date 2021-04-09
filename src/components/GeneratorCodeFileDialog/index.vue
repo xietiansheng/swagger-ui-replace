@@ -43,7 +43,7 @@ import { Path } from '@/entity/Path'
 import { DialogComponent } from '@/abstract/Component'
 
 @Component
-export default class GeneratorCodeFileDialog extends DialogComponent<any, any> {
+export default class GeneratorCodeFileDialog extends DialogComponent {
   private formData = {
     folderName: 'my-view',
     modelName: 'MyModelName',

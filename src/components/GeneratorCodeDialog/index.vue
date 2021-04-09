@@ -27,14 +27,13 @@ import { DialogComponent } from '@/abstract/Component'
     TemplateConfig
   }
 })
-export default class GeneratorCodeDialog extends DialogComponent<any, any> {
+export default class GeneratorCodeDialog extends DialogComponent {
   // 生成结果代码预览
   private resultCodeText = ''
   // 代码模板
   private templateText = ''
   // 代码解析函数
-  private templateResolve: Function = () => {
-  }
+  private templateResolve: Function = () => {}
 
   // 代码语言
   private language = ''

@@ -41,7 +41,7 @@ import FinalValue from '@/util/FinalValue'
 import { DialogComponent } from '@/abstract/Component'
 
 @Component
-export default class ServiceConfigDialog extends DialogComponent<any, any> {
+export default class ServiceConfigDialog extends DialogComponent {
   serviceList: Service[] = []
 
   created () {
