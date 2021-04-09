@@ -13,6 +13,7 @@ import FinalValue from '@/util/FinalValue'
 import { Version } from '@/data/Version'
 import VersionDialog from '@/components/VersionView/dialog.vue'
 import { ElMessage } from 'element-ui/types/message'
+import { DialogComponent } from '@/abstract/Component'
 
 @Component({
   components: {
@@ -23,7 +24,7 @@ import { ElMessage } from 'element-ui/types/message'
 export default class App extends Vue {
   $message!: ElMessage
 
-  @Ref('versionRef') readonly versionRef!: { open: Function }
+  @Ref('versionRef') readonly versionRef!: DialogComponent<any, any>
 
   mounted () {
     this.initVersion()

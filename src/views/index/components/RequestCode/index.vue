@@ -67,6 +67,7 @@ import { Path } from '@/entity/Path'
 import { Util } from '@/util'
 import { Color } from '@/config/Color'
 import { ElTree } from 'element-ui/types/tree'
+import { DialogComponent } from '@/abstract/Component'
 
 @Component({
   components: {
@@ -75,7 +76,7 @@ import { ElTree } from 'element-ui/types/tree'
 })
 
 export default class RequestCode extends Vue {
-  @Ref('codeDialogRef') readonly codeDialogRef!: { open: Function }
+  @Ref('codeDialogRef') readonly codeDialogRef!: DialogComponent<any, any>
   @Ref('treeRef') readonly treeRef!: ElTree<any, any>
 
   private filterText = ''

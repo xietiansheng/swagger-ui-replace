@@ -15,10 +15,11 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
+import { Component } from 'vue-property-decorator'
 import ResultCode from '@/components/GeneratorCodeDialog/components/ResultCode.vue'
 import TemplateConfig, { CodeType } from '@/components/GeneratorCodeDialog/components/TemplateConfig.vue'
 import { Propertie } from '@/entity/Propertie'
+import { DialogComponent } from '@/abstract/Component'
 
 @Component({
   components: {
@@ -26,9 +27,7 @@ import { Propertie } from '@/entity/Propertie'
     TemplateConfig
   }
 })
-export default class GeneratorCodeDialog extends Vue {
-  // 控制弹窗显示逻辑
-  private visible = false
+export default class GeneratorCodeDialog extends DialogComponent<any, any> {
   // 生成结果代码预览
   private resultCodeText = ''
   // 代码模板

@@ -37,14 +37,13 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
+import { Component } from 'vue-property-decorator'
 import FileCodeUtil from '@/components/GeneratorCodeFileDialog/util/FileCodeUtil'
 import { Path } from '@/entity/Path'
+import { DialogComponent } from '@/abstract/Component'
 
 @Component
-export default class GeneratorCodeFileDialog extends Vue {
-  private visible: boolean = false
-
+export default class GeneratorCodeFileDialog extends DialogComponent<any, any> {
   private formData = {
     folderName: 'my-view',
     modelName: 'MyModelName',
@@ -59,11 +58,7 @@ export default class GeneratorCodeFileDialog extends Vue {
   private handleGeneratorClick () {
     // 组装所有数据
     FileCodeUtil.generator({ ...this.curPath, ...this.formData })
-    this.visible = false
-  }
-
-  open (options: {}) {
-    this.visible = true
+    this.close()
   }
 }
 </script>

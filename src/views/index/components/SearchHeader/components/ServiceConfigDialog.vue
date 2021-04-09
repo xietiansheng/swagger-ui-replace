@@ -35,14 +35,13 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
+import { Component } from 'vue-property-decorator'
 import { Util } from '@/util'
 import FinalValue from '@/util/FinalValue'
+import { DialogComponent } from '@/abstract/Component'
 
 @Component
-export default class ServiceConfigDialog extends Vue {
-  private visible = false
-
+export default class ServiceConfigDialog extends DialogComponent<any, any> {
   serviceList: Service[] = []
 
   created () {
@@ -67,11 +66,11 @@ export default class ServiceConfigDialog extends Vue {
   handleConfirmClick () {
     Util.setStorage(FinalValue.STORAGE_SERVICE_LIST, JSON.stringify(this.serviceList))
     this.$message.success('保存成功！')
-    this.visible = false
+    this.close()
   }
 
   open () {
-    this.visible = true
+    super.open()
     const serviceStorage = Util.getStorage(FinalValue.STORAGE_SERVICE_URL)
     if (serviceStorage) {
       // 插入第一条

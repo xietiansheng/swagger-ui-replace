@@ -49,6 +49,7 @@ import { Propertie } from '@/entity/Propertie'
 import GeneratorCodeDialog from '@/components/GeneratorCodeDialog/index.vue'
 import { Path } from '@/entity/Path'
 import { ElTree } from 'element-ui/types/tree'
+import { DialogComponent } from '@/abstract/Component'
 
 @Component({
   components: {
@@ -58,7 +59,7 @@ import { ElTree } from 'element-ui/types/tree'
 
 export default class ResponseCode extends Vue {
   @Ref('treeRef') readonly treeRef!: ElTree<any, any>
-  @Ref('codeDialogRef') readonly codeDialogRef!: { open: Function }
+  @Ref('codeDialogRef') readonly codeDialogRef!: DialogComponent<any, any>
   private filterText = ''
 
   get curPath (): Path {
