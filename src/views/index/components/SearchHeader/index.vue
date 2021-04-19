@@ -125,7 +125,7 @@ export default class SearchHeader extends Vue {
     { label: '服务器配置', value: '1', icon: 'el-icon-circle-plus-outline', ref: 'serviceConfigRef' },
     { label: '更新日志', value: '2', icon: 'el-icon-document', ref: 'versionDialogRef' },
     { label: '生成代码文件(体验)', value: '3', icon: 'el-icon-files', ref: 'generatorCodeFileRef' },
-    { label: 'gitee', value: '4', icon: 'el-icon-info', ref: '', link: 'https://gitee.com/XieTS/swagger-replace-tools' },
+    { label: 'gitee', value: '4', icon: 'el-icon-info', ref: '', link: 'https://gitee.com/XieTS/swagger-ui-replace' },
     { label: 'github', value: '5', icon: 'el-icon-info', ref: '', link: 'https://github.com/xietiansheng/swagger-replace-tools' }
   ]
 
@@ -183,7 +183,7 @@ export default class SearchHeader extends Vue {
 
   handleCommand (value: string) {
     if (value === '4') {
-      window.open('https://gitee.com/XieTS/swagger-replace-tools')
+      window.open('https://gitee.com/XieTS/swagger-ui-replace')
       return
     } else if (value === '5') {
       window.open('https://github.com/xietiansheng/swagger-replace-tools')
