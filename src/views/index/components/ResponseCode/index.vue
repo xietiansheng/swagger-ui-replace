@@ -78,7 +78,6 @@ export default class ResponseCode extends Vue {
   }
 
   private handleGeneratorDialogOpen (path: Path) {
-    console.log(this.codeDialogRef, '<---------->this.codeDialogRef')
     this.codeDialogRef.open({ data: path.properties })
   }
 }

@@ -35,10 +35,12 @@
 </template>
 
 <script lang="ts">
+import { Component } from 'vue-property-decorator'
 import FileCodeUtil from '@/components/GeneratorCodeFileDialog/util/FileCodeUtil'
 import { Path } from '@/entity/Path'
 import { DialogComponent } from '@/base/BaseComponent'
 
+@Component
 export default class GeneratorCodeFileDialog extends DialogComponent {
   private formData = {
     folderName: 'my-view',

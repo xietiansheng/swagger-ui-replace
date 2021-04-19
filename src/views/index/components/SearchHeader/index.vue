@@ -62,16 +62,15 @@
           </el-button>
           <el-dropdown-menu slot="dropdown">
             <el-dropdown-item
-              v-for="item in dropdownOptions"
-              :key="item.value"
-              :command="item.value"
+              v-for="(item,index) in dropdownOptions"
+              :key="index"
+              :command="item"
               :icon="item.icon"
             >
               {{ item.label }}
             </el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
-        <!--        <el-button type="primary" @click="()=>{$refs.generatorCodeFileXRef.open()}" v-text="'生成文件'" />-->
       </el-form-item>
     </el-form>
     <!-- 生成代码文件弹窗 -->
@@ -121,12 +120,12 @@ export default class SearchHeader extends Vue {
   // 服务器地址
   serviceList: Service[] = []
 
-  private dropdownOptions = [
-    { label: '服务器配置', value: '1', icon: 'el-icon-circle-plus-outline', ref: 'serviceConfigRef' },
-    { label: '更新日志', value: '2', icon: 'el-icon-document', ref: 'versionDialogRef' },
-    { label: '生成代码文件(体验)', value: '3', icon: 'el-icon-files', ref: 'generatorCodeFileRef' },
-    { label: 'gitee', value: '4', icon: 'el-icon-info', ref: '', link: 'https://gitee.com/XieTS/swagger-ui-replace' },
-    { label: 'github', value: '5', icon: 'el-icon-info', ref: '', link: 'https://github.com/xietiansheng/swagger-replace-tools' }
+  dropdownOptions:Dropdown[] = [
+    { label: '服务器配置', type: 'dialog', icon: 'el-icon-circle-plus-outline', refName: 'serviceConfigRef' },
+    { label: '更新日志', type: 'dialog', icon: 'el-icon-document', refName: 'versionDialogRef' },
+    { label: '生成代码文件(体验)', type: 'dialog', icon: 'el-icon-files', refName: 'generatorCodeFileRef' },
+    { label: 'gitee', type: 'link', icon: 'el-icon-info', link: 'https://gitee.com/XieTS/swagger-ui-replace' },
+    { label: 'github', type: 'link', icon: 'el-icon-info', link: 'https://github.com/xietiansheng/swagger-replace-tools' }
   ]
 
   get tagName (): Path {
@@ -181,17 +180,13 @@ export default class SearchHeader extends Vue {
     })
   }
 
-  handleCommand (value: string) {
-    if (value === '4') {
-      window.open('https://gitee.com/XieTS/swagger-ui-replace')
-      return
-    } else if (value === '5') {
-      window.open('https://github.com/xietiansheng/swagger-replace-tools')
-      return
+  handleCommand (dropdown: Dropdown) {
+    if (dropdown.type === 'link') {
+      window.open(dropdown.link)
     }
-    const filterDropdown = this.dropdownOptions.filter(item => item.value === value)[0]
     // @ts-ignore
-    this.$refs[filterDropdown.ref].open()
+    // eslint-disable-next-line no-unused-expressions
+    this.$refs[dropdown.refName]?.open()
   }
 
   handleOpenSwagger () {
@@ -204,6 +199,14 @@ export default class SearchHeader extends Vue {
     const projectLink = project ? `?urls.primaryName=${project.name}#/${this.tagName}` : ''
     window.open(`${link}/swagger-ui.html${projectLink}`)
   }
+}
+
+interface Dropdown {
+  label: string
+  type: 'dialog' | 'link'
+  icon: string
+  link?: string
+  refName?: string
 }
 </script>
 
