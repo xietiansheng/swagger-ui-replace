@@ -22,6 +22,7 @@ import { DialogComponent } from '@/base/BaseComponent'
   }
 })
 export default class App extends Vue {
+  /* 全局提示 */
   $message!: ElMessage
 
   @Ref('versionRef') readonly versionRef!: DialogComponent
