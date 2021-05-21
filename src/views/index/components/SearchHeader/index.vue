@@ -120,12 +120,17 @@ export default class SearchHeader extends Vue {
   // 服务器地址
   serviceList: Service[] = []
 
-  dropdownOptions:Dropdown[] = [
+  dropdownOptions: Dropdown[] = [
     { label: '服务器配置', type: 'dialog', icon: 'el-icon-circle-plus-outline', refName: 'serviceConfigRef' },
     { label: '更新日志', type: 'dialog', icon: 'el-icon-document', refName: 'versionDialogRef' },
     { label: '生成代码文件(体验)', type: 'dialog', icon: 'el-icon-files', refName: 'generatorCodeFileRef' },
     { label: 'gitee', type: 'link', icon: 'el-icon-info', link: 'https://gitee.com/XieTS/swagger-ui-replace' },
-    { label: 'github', type: 'link', icon: 'el-icon-info', link: 'https://github.com/xietiansheng/swagger-replace-tools' }
+    {
+      label: 'github',
+      type: 'link',
+      icon: 'el-icon-info',
+      link: 'https://github.com/xietiansheng/swagger-replace-tools'
+    }
   ]
 
   get tagName (): Path {

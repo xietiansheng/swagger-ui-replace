@@ -21,6 +21,14 @@ export class Version {
 
   public static readonly history: VersionHistory[] = [
     {
+      version: '2.1.5',
+      issue: [],
+      func: [
+        { id: '215f1', message: '字符串默认值由单引号改为双引号（后期增加默认值配置项）' }
+      ],
+      timestamp: '2021/05/21'
+    },
+    {
       version: '2.1.4',
       issue: [],
       func: [
