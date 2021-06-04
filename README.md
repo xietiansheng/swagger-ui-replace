@@ -23,6 +23,10 @@
 
 ![](./src/assets/example3.png)
 
+> Dart 代码生成
+
+![](./src/assets/example5.png)
+
 <font color=e06c75>* 任何语言代码均可通过模板语法自由配置<font>
 
 ### 开发背景
@@ -75,7 +79,7 @@
     - $a：属性key
     - $b：属性注释
     - $c：属性默认值
-    - $d: 属性的类型（目前仅支持int,String,Array，后期会开放配置共能）
+    - $d: 属性的类型（目前仅支持int,String,Array，后期会开放配置功能）
     - !!!for：循环语句，$a,$b,$c,$d需要包裹在!!!for中才会生效
     - 所有模板配置系统会自动缓存到本地
     - 模板内支持多个!!!for语法嵌套（参考dart语法）
