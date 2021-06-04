@@ -14,12 +14,15 @@ export default class CodeResolve {
       props,
       properties,
       callbackFn: (data, propertie) => {
-        return data.replace(/\$a|\$b|\$c/g, (a, b) => {
+        return data.replace(/\$a|\$b|\$c|\$d/g, (a, b) => {
           // @ts-ignore
           const typeValue = FinalValue.TYPE_TO_VALUE[propertie.type]
+          // @ts-ignore
+          const typeToDartType = FinalValue.TYPE_TO_DARTTYPE[propertie.type]
           return a.replace('$a', propertie.name)
             .replace('$b', propertie.description)
             .replace('$c', typeValue)
+            .replace('$d', typeToDartType)
         })
       }
     })

@@ -17,8 +17,16 @@ export default class FinalValue {
   public static readonly TYPE_TO_VALUE = {
     number: 0,
     integer: 0,
-    string: '""',
+    string: "''",
     boolean: false,
     array: '[]'
+  }
+
+  public static readonly TYPE_TO_DARTTYPE = {
+    number: 'int',
+    integer: 'int',
+    string: 'String',
+    boolean: 'boolean',
+    array: 'Array'
   }
 }
