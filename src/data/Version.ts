@@ -21,6 +21,18 @@ export class Version {
 
   public static readonly history: VersionHistory[] = [
     {
+      version: '2.1.6',
+      issue: [
+        { id: '216i1', message: '修复模板语法中多个!!!for语法同时存在时，代码生成错误问题！' }
+      ],
+      func: [
+        { id: '216f1', message: '增加对flutter dart语法的默认支持' },
+        { id: '216f2', message: '增加$d配置项，显示属性对应的数据类型，详情参考README.md文档' },
+        { id: '216f3', message: '保存用户模板类型选择，下次生成代码自动打开上一次的模板' }
+      ],
+      timestamp: '2021/06/04'
+    },
+    {
       version: '2.1.5',
       issue: [],
       func: [
