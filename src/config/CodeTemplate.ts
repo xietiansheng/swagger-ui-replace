@@ -1,4 +1,25 @@
 export default class CodeTemplate {
+  public static Dart =
+    'class Model extends BaseModel {\n' +
+    '  !!!for\n' +
+    '/// $b\n' +
+    '  $d $a = $c;\n' +
+    '  !!!for\n' +
+    '\n' +
+    '  @override\n' +
+    '  setJson(Map<String, dynamic> json) {\n' +
+    '!!!for\n' +
+    '    $a = json[\'attachExtName\'] ?? this.$a;\n' +
+    '!!!for\n' +
+    '    super.setJson(json);\n' +
+    '  }\n' +
+    '\n' +
+    '  @override\n' +
+    '  Model fromJson(Map<String, dynamic> json) {\n' +
+    '    return Model()..setJson(json);\n' +
+    '  }\n' +
+    '}'
+
   public static JavaScript =
     'const params = {' +
     '\n!!!for' +

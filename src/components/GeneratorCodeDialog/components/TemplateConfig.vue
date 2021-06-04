@@ -47,19 +47,26 @@ export default class TemplateConfig extends Vue {
   private codeTypeList: CodeType[] = [
     { label: 'JavaScript', template: CodeTemplate.JavaScript, resolve: CodeResolve.JavaScript },
     { label: 'TypeScript', template: CodeTemplate.TypeScript, resolve: CodeResolve.JavaScript },
-    { label: 'Vue', template: CodeTemplate.Vue, resolve: CodeResolve.Vue }
+    { label: 'Vue', template: CodeTemplate.Vue, resolve: CodeResolve.Vue },
+    { label: 'Dart', template: CodeTemplate.Dart, resolve: CodeResolve.JavaScript },
+    { label: '自定义', template: '', resolve: CodeResolve.JavaScript }
   ]
 
   // 当前代码类型
   private curCodeTypeObj: CodeType = this.codeTypeList[0]
 
   created () {
+    const codeTypeIndex = localStorage.getItem('codeType')
+    if (codeTypeIndex) {
+      this.curCodeTypeObj = this.codeTypeList[Number(codeTypeIndex)]
+    }
     this.templateCodeInit()
     this.sendChangeEmit()
   }
 
   private handleCommandClick (codeType: CodeType) {
     this.curCodeTypeObj = codeType
+    localStorage.setItem('codeType', this.codeTypeList.findIndex(item => item.label === codeType.label).toString())
     this.templateCodeInit()
     this.sendChangeEmit()
   }
